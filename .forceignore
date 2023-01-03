@@ -1,0 +1,24 @@
+# List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
+# More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
+#
+
+package.xml
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__/**
+
+# 23-Jun-2021 - Ashish Added the following line as deployment was failing with the error
+# ERROR running force:source:deploy:  Unexpected file found in package directory: 
+# /home/jenkins/agent/workspace/rce_sia-salesforce_testaa_flight/force-app/main/default/blacklistedConsumers/BlacklistedConsumer155969236210464.blacklistedConsumer-meta.xml
+force-app/main/default/blacklistedConsumers
+force-app/main/default/flowDefinitions
+**/standard__LightningInstrumentation*
+**/Activity-en_US/*
+**/objectTranslations/*
+# due to this error the above mentioned Activity-en_US object translation is ignored: Unexpected child metadata [\force-app\main\default\objectTranslations\Activity-en_US\Address_1__c.fieldTranslation-meta.xml] found for parent type [CustomObjectTranslation]
+**/standard__AppLauncher*
+# it is picking this app un-expectedly as part of package deployment
